@@ -1,0 +1,35 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <map>
+#include <algorithm>
+using namespace std;
+
+int main() {
+    map<string, int> mp;
+    int n;
+    cin >> n;
+
+    for (int i = 0; i < n; i++) {
+        int number, mark;
+        string name;
+        cin >> number >> name; // Simplified reading without unnecessary ignore calls
+
+        if (number == 1) {
+            cin >> mark; // Only read mark here
+            // Update or insert the marks
+            if (mp.find(name) != mp.end()) {
+                mp[name] += mark; // Correctly update existing marks
+            } else {
+                mp[name] = mark; // Insert new entry
+            }
+        } else if (number == 2) {
+            mp.erase(name); // Erase the entry
+        } else if (number == 3) {
+            // Query the marks, print 0 if not found
+            cout << mp[name] << endl; // This will print 0 if the name is not found, simplifying the logic
+        }
+    }
+    return 0;
+}
